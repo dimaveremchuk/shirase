@@ -1,0 +1,185 @@
+.content {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+/* ── Headings ───────────────────────────────────────────────── */
+
+.content :global(h2),
+.content :global(h3),
+.content :global(h4) {
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+  margin-top: var(--space-8);
+}
+
+.content :global(h2) {
+  font-size: var(--text-xl);
+}
+
+.content :global(h3) {
+  font-size: var(--text-lg);
+}
+
+.content :global(h4) {
+  font-size: var(--text-md);
+}
+
+/* ── Paragraph ──────────────────────────────────────────────── */
+
+.content :global(p) {
+  margin-top: var(--space-4);
+}
+
+.content :global(h2 + p),
+.content :global(h3 + p),
+.content :global(h4 + p) {
+  margin-top: var(--space-2);
+}
+
+/* ── Inline ─────────────────────────────────────────────────── */
+
+.content :global(strong) {
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.content :global(em) {
+  font-style: italic;
+}
+
+.content :global(a) {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--color-border-strong);
+}
+
+.content :global(a:hover) {
+  text-decoration-color: var(--color-text);
+}
+
+/* ── Inline code ────────────────────────────────────────────── */
+
+.content :global(:not(pre) > code) {
+  font-size: var(--text-sm);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+/* ── Code block ─────────────────────────────────────────────── */
+
+.content :global(pre) {
+  margin-top: var(--space-4);
+  background: var(--gray-950);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  overflow-x: auto;
+}
+
+.content :global(pre > code) {
+  font-size: var(--text-sm);
+  color: var(--gray-50);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Blockquote ─────────────────────────────────────────────── */
+
+.content :global(blockquote) {
+  margin-top: var(--space-4);
+  border-left: 3px solid var(--color-border-strong);
+  padding-left: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.content :global(blockquote p) {
+  margin-top: 0;
+}
+
+.content :global(blockquote p + p) {
+  margin-top: var(--space-2);
+}
+
+/* ── Lists ──────────────────────────────────────────────────── */
+
+.content :global(ul),
+.content :global(ol) {
+  margin-top: var(--space-4);
+  margin-left: var(--space-6);
+  line-height: var(--leading-relaxed);
+}
+
+.content :global(ul) {
+  list-style-type: disc;
+}
+
+.content :global(ol) {
+  list-style-type: decimal;
+}
+
+.content :global(li) {
+  margin-top: var(--space-1);
+}
+
+.content :global(li:first-child) {
+  margin-top: 0;
+}
+
+.content :global(li > ul),
+.content :global(li > ol) {
+  margin-top: var(--space-1);
+}
+
+/* ── Table ──────────────────────────────────────────────────── */
+
+.content :global(table) {
+  margin-top: var(--space-4);
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  text-align: left;
+}
+
+.content :global(thead) {
+  background: var(--color-bg-secondary);
+}
+
+.content :global(th),
+.content :global(td) {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.content :global(th) {
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.content :global(tbody tr:nth-child(even)) {
+  background: var(--color-bg-secondary);
+}
+
+/* ── Horizontal rule ────────────────────────────────────────── */
+
+.content :global(hr) {
+  margin-top: var(--space-8);
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Image ──────────────────────────────────────────────────── */
+
+.content :global(img) {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  margin-top: var(--space-4);
+}
