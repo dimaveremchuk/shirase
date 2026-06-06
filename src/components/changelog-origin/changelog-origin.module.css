@@ -1,0 +1,22 @@
+.post {
+  display: flex;
+}
+
+.origin {
+  display: flex;
+  /* Set padding to be at the middle of the flag icon */
+  padding-left: calc(180px - 8px);
+  align-items: center;
+  /* Gap should take into account the flag icon to make sure text is properly aligned */
+  gap: calc(40px - 8px);
+  color: var(--color-text-tertiary);
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .origin {
+    padding-left: 0;
+    gap: 8px;
+  }
+}

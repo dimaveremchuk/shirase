@@ -1,5 +1,6 @@
 import { posts } from '@/lib/changelog-data'
 import { Markdown } from '@/components/markdown/Markdown'
+import { ChangelogOrigin } from '@/components/changelog-origin/ChangelogOrigin'
 import styles from './page.module.css'
 
 function formatDate(iso: string) {
@@ -37,7 +38,7 @@ export default function ChangelogPage() {
             <div className={styles.right}>
               {/* shown only on mobile — date in .left is hidden */}
               <time className={styles.dateMobile}>{formatDate(post.publishedAt)}</time>
-              <h1 className={styles.title}>{post.title}</h1>
+              <h2 className={styles.title}>{post.title}</h2>
               {post.coverImageUrl && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -53,6 +54,7 @@ export default function ChangelogPage() {
           </article>
         ))}
       </div>
+      <ChangelogOrigin />
     </main>
   )
 }
