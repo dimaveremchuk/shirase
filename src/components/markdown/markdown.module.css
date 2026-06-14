@@ -1,5 +1,5 @@
 .content {
-  font-size: var(--text-base);
+  font-size: var(--text-md);
   line-height: var(--leading-relaxed);
   color: var(--color-text);
 }
@@ -12,31 +12,32 @@
   font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
   color: var(--color-text);
-  margin-top: var(--space-8);
+  margin-top: 2.4em;
+  letter-spacing: var(--text-tight-letter-spacing);
 }
 
 .content :global(h2) {
-  font-size: var(--text-xl);
+  font-size: var(--text-3xl);
 }
 
 .content :global(h3) {
-  font-size: var(--text-lg);
+  font-size: var(--text-2xl);
 }
 
 .content :global(h4) {
-  font-size: var(--text-md);
+  font-size: var(--text-xl);
 }
 
 /* ── Paragraph ──────────────────────────────────────────────── */
 
 .content :global(p) {
-  margin-top: var(--space-4);
+  margin-top: 1.25em;
 }
 
 .content :global(h2 + p),
 .content :global(h3 + p),
 .content :global(h4 + p) {
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
 }
 
 /* ── Inline ─────────────────────────────────────────────────── */
@@ -51,31 +52,42 @@
 }
 
 .content :global(a) {
-  color: var(--color-text);
+  color: var(--color-accent);
   text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: clamp(2px,0.25em,6px);
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  font-weight: var(--weight-medium);
+  text-decoration-thickness: 2px;
+  transition: var(--duration-base);
+  transition-property: color, text-decoration-color;
 }
 
 .content :global(a:hover) {
-  text-decoration-color: var(--color-text);
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
 }
 
 /* ── Inline code ────────────────────────────────────────────── */
 
 .content :global(:not(pre) > code) {
   font-size: var(--text-sm);
-  background: var(--color-bg-tertiary);
+  background: var(--color-bg);
   border-radius: var(--radius-sm);
-  padding: 0.1em 0.35em;
-  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  padding: 0.1em 0.25em;
+  box-shadow: 0 0 0 1px var(--color-border);
+  font-family: var(--font-monospace);
+  white-space: nowrap;
+}
+
+.content :global(tbody tr:nth-child(even) :not(pre) > code) {
+  background: var(--color-bg-secondary);
 }
 
 /* ── Code block ─────────────────────────────────────────────── */
 
 .content :global(pre) {
-  margin-top: var(--space-4);
-  background: var(--gray-950);
+  margin: 3rem 0 3rem 0;
+  background: var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-border-gentle);
   border-radius: var(--radius-md);
   padding: var(--space-4) var(--space-5);
   overflow-x: auto;
@@ -83,21 +95,19 @@
 
 .content :global(pre > code) {
   font-size: var(--text-sm);
-  color: var(--gray-50);
   background: transparent;
   padding: 0;
   border-radius: 0;
-  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-family: var(--font-monospace);
   line-height: var(--leading-relaxed);
 }
 
 /* ── Blockquote ─────────────────────────────────────────────── */
 
 .content :global(blockquote) {
-  margin-top: var(--space-4);
+  margin-top: 1.25em;
   border-left: 3px solid var(--color-border-strong);
   padding-left: var(--space-4);
-  color: var(--color-text-secondary);
 }
 
 .content :global(blockquote p) {
@@ -105,7 +115,7 @@
 }
 
 .content :global(blockquote p + p) {
-  margin-top: var(--space-2);
+  margin-top: 1.25em;
 }
 
 /* ── Lists ──────────────────────────────────────────────────── */
@@ -113,16 +123,21 @@
 .content :global(ul),
 .content :global(ol) {
   margin-top: var(--space-4);
-  margin-left: var(--space-6);
   line-height: var(--leading-relaxed);
 }
 
 .content :global(ul) {
   list-style-type: disc;
+  padding-left: 1.25em;
 }
 
 .content :global(ol) {
   list-style-type: decimal;
+  padding-left: 1.5em;
+}
+
+.content :global(li::marker) {
+  color: var(--color-text-secondary);
 }
 
 .content :global(li) {
@@ -135,7 +150,7 @@
 
 .content :global(li > ul),
 .content :global(li > ol) {
-  margin-top: var(--space-1);
+  margin-top: var(--space-2);
 }
 
 /* ── Table ──────────────────────────────────────────────────── */
@@ -144,28 +159,32 @@
   margin-top: var(--space-4);
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   text-align: left;
 }
 
 .content :global(thead) {
-  background: var(--color-bg-secondary);
 }
 
 .content :global(th),
 .content :global(td) {
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-3);
   vertical-align: top;
 }
 
 .content :global(th) {
   font-weight: var(--weight-semibold);
   color: var(--color-text);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: var(--color-border-gentle);
 }
 
 .content :global(tbody tr:nth-child(even)) {
-  background: var(--color-bg-secondary);
+  background: var(--color-bg);
+  border-style: solid;
+  border-width: 1px 0;
+  border-color: var(--color-border-gentle);
 }
 
 /* ── Horizontal rule ────────────────────────────────────────── */
@@ -180,6 +199,6 @@
 
 .content :global(img) {
   max-width: 100%;
-  border-radius: var(--radius-md);
-  margin-top: var(--space-4);
+  border-radius: var(--radius-lg);
+  margin: 3rem 0 3rem 0;
 }

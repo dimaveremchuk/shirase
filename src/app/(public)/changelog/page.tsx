@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { posts } from '@/lib/changelog-data'
 import { Markdown } from '@/components/markdown/Markdown'
 import { ChangelogOrigin } from '@/components/changelog-origin/ChangelogOrigin'
@@ -18,43 +19,49 @@ export default function ChangelogPage() {
 
   return (
     <main className={styles.container}>
-      <div className={styles.headingContainer}>
-        <div className={styles.heading}>
-        Changelog
+      <div className={styles.content}>
+        <div className={styles.headingContainer}>
+          <div className={styles.heading}>
+          Changelog
+          </div>
+          <div className={styles.subheading}>
+          Updates from Shirase
+          </div>
         </div>
-        <div className={styles.subheading}>
-        Updates from Shirase
-        </div>
-      </div>
-      <div className={styles.posts}>
-        {sorted.map((post) => (
+        <div className={styles.posts}>
+    {sorted.map((post) => (
           <article key={post.id} className={styles.post}>
             <div className={styles.left}>
               <div className={styles.sticky}>
-                <time className={styles.date}>{formatDate(post.publishedAt)}</time>
-                <span className={styles.dot} aria-hidden="true" />
+              <time className={styles.date}>{formatDate(post.publishedAt)}</time>
+              <span className={styles.dot} aria-hidden="true" />
               </div>
             </div>
             <div className={styles.right}>
-              {/* shown only on mobile — date in .left is hidden */}
-              <time className={styles.dateMobile}>{formatDate(post.publishedAt)}</time>
-              <h2 className={styles.title}>{post.title}</h2>
-              {post.coverImageUrl && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={post.coverImageUrl}
-                  alt=""
-                  className={styles.cover}
-                />
-              )}
-              <div className={styles.body}>
-                <Markdown content={post.content} />
-              </div>
-            </div>
-          </article>
+            {/* shown only on mobile — date in .left is hidden */}
+            <time className={styles.dateMobile}>{formatDate(post.publishedAt)}</time>
+            <h2 className={styles.title}>
+              <Link href={`/changelog/${post.slug}`} className={styles.titleLink}>
+                {post.title}
+              </Link>
+            </h2>
+      {post.coverImageUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={post.coverImageUrl}
+          alt=""
+          className={styles.cover}
+        />
+            )}
+          <div className={styles.body}>
+          <Markdown content={post.content} />
+          </div>
+        </div>
+      </article>
         ))}
-      </div>
-      <ChangelogOrigin />
+            </div>
+            <ChangelogOrigin />
+          </div>
     </main>
   )
 }
