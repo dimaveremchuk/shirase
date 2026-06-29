@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { TextMorph } from 'torph/react'
+import styles from './CopyLinkButton.module.css'
 
 interface CopyLinkButtonProps {
   className?: string
@@ -13,12 +13,15 @@ export function CopyLinkButton({ className }: CopyLinkButtonProps) {
   function handleClick() {
     navigator.clipboard.writeText(window.location.href)
     setState('copied')
-    setTimeout(() => setState('idle'), 1500)
+    setTimeout(() => setState('idle'), 2000)
   }
 
   return (
-    <button className={className} onClick={handleClick}>
-      <TextMorph>{state === 'copied' ? 'Copied' : 'Copy link'}</TextMorph>
+    <button className={`${styles.button}${className ? ` ${className}` : ''}`} onClick={handleClick} disabled={state === 'copied'}>
+      <span className={styles.labels} data-copied={state === 'copied' || undefined}>
+        <span className={styles.labelDefault} aria-hidden={state === 'copied'}>Copy link</span>
+        <span className={styles.labelCopied} aria-hidden={state === 'idle'}>Copied</span>
+      </span>
     </button>
   )
 }

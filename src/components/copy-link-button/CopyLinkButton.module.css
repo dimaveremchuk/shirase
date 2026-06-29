@@ -1,0 +1,29 @@
+.button:disabled {
+  cursor: default;
+}
+
+.labels {
+  display: inline-grid;
+  text-align: right;
+}
+
+.labelDefault,
+.labelCopied {
+  grid-area: 1 / 1;
+  transition:
+    transform var(--duration-base) var(--ease-swift-out),
+    opacity var(--duration-base) var(--ease-swift-out);
+}
+
+.labelDefault { transform: translateX(0); opacity: 1; }
+.labelCopied  { transform: translateX(-1em); opacity: 0; }
+
+.labels[data-copied] .labelDefault { transform: translateX(1em); opacity: 0; }
+.labels[data-copied] .labelCopied  { transform: translateX(0); opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .labelDefault,
+  .labelCopied {
+    transition: none;
+  }
+}
